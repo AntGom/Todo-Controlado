@@ -48,27 +48,7 @@
     <div class="main-container">
       <!-- Sidebar -->
       <div class="sidebar">
-        <h2>Filtros</h2>
-        <div class="dropdown-container">
-          <div class="dropdown-header" id="filterDropdown">
-            <span id="currentFilterText">Todas las tareas</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="dropdown-menu" id="filterMenu">
-            <div class="dropdown-item" data-filter="all">
-              <i class="fas fa-tasks"></i> Todas las tareas
-            </div>
-            <div class="dropdown-item" data-filter="pending">
-              <i class="fas fa-clock"></i> Pendientes
-            </div>
-            <div class="dropdown-item" data-filter="inProgress">
-              <i class="fas fa-spinner"></i> En Progreso
-            </div>
-            <div class="dropdown-item" data-filter="completed">
-              <i class="fas fa-check-circle"></i> Completadas
-            </div>
-          </div>
-        </div>
+
 
         <div class="news-container">
           <h2>Noticias</h2>
@@ -80,6 +60,26 @@
       <div class="tasks-container">
         <div class="tasks-header">
           <h2>Mis Tareas</h2>
+          <div class="dropdown-container">
+            <div class="dropdown-header" id="filterDropdown">
+              <span id="currentFilterText">Todas las tareas</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="dropdown-menu" id="filterMenu">
+              <div class="dropdown-item" data-filter="all">
+                <i class="fas fa-tasks"></i> Todas las tareas
+              </div>
+              <div class="dropdown-item" data-filter="pending">
+                <i class="fas fa-clock"></i> Pendientes
+              </div>
+              <div class="dropdown-item" data-filter="inProgress">
+                <i class="fas fa-spinner"></i> En Progreso
+              </div>
+              <div class="dropdown-item" data-filter="completed">
+                <i class="fas fa-check-circle"></i> Completadas
+              </div>
+            </div>
+          </div>
           <div class="task-btns">
             <button id="addTaskBtn" class="primary-btn">
               <i class="fas fa-plus"></i> Nueva Tarea

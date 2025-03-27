@@ -151,7 +151,6 @@ header h1 {
 }
 
 .sidebar h2 {
-  margin-bottom: 1rem;
   color: var(--text-color);
   font-size: 1.1rem;
 }
@@ -159,21 +158,20 @@ header h1 {
 /* Dropdown menu */
 .dropdown-container {
   position: relative;
-  margin-bottom: 1.5rem;
 }
 
 .dropdown-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.8rem 1rem;
+  padding: 0.8rem;
   background-color: var(--primary-color);
   color: white;
   border-radius: var(--border-radius);
   cursor: pointer;
   transition: var(--transition);
   user-select: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 1.9rem;
 }
 
 .dropdown-header:hover {
@@ -209,6 +207,7 @@ header h1 {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-size: 0.8rem;
 }
 
 .dropdown-item:hover {
@@ -227,10 +226,6 @@ header h1 {
 }
 
 /* News */
-.news-container {
-  margin-top: 1.5rem;
-}
-
 .news-list {
   margin-top: 0.8rem;
 }
@@ -291,9 +286,21 @@ header h1 {
     flex-direction: column;
   }
   
+  /* Reordenar elementos en móvil, mostrando primero el planner */
+  .main-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .tasks-container {
+    order: 1; 
+  }
+  
   .sidebar {
+    order: 2; 
     flex: auto;
     width: 100%;
+    margin-top: 1rem;
   }
   
   .header-container {
