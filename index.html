@@ -1,17 +1,18 @@
 <!doctype html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TaskPlanner - Gestión de Tareas</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  
+
   <!-- Estilos CSS divididos -->
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/calendar.css">
-  
+
   <!-- Scripts (orden es crítico) -->
   <script defer src="core/data.js"></script>
   <script defer src="core/tasks.js"></script>
@@ -110,10 +111,6 @@
               <h3 id="currentMonthYear">Abril 2025</h3>
               <button id="nextMonth" class="calendar-nav-btn"><i class="fas fa-chevron-right"></i></button>
             </div>
-            <div class="calendar-view-selector">
-              <button id="monthViewBtn" class="calendar-view-btn active">Mes</button>
-              <button id="weekViewBtn" class="calendar-view-btn">Semana</button>
-            </div>
           </div>
           <div id="calendarMonthView" class="calendar-month-view">
             <div class="calendar-weekdays">
@@ -127,20 +124,6 @@
             </div>
             <div id="calendarDaysGrid" class="calendar-grid">
               <!-- Los días del calendario se generarán aquí -->
-            </div>
-          </div>
-          <div id="calendarWeekView" class="calendar-week-view hidden">
-            <div class="calendar-weekdays">
-              <div>Lun</div>
-              <div>Mar</div>
-              <div>Mié</div>
-              <div>Jue</div>
-              <div>Vie</div>
-              <div>Sáb</div>
-              <div>Dom</div>
-            </div>
-            <div id="calendarWeekGrid" class="calendar-week-grid">
-              <!-- Los días de la semana se generarán aquí -->
             </div>
           </div>
         </div>

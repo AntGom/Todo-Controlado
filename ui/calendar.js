@@ -1,18 +1,13 @@
 // Variables para el calendario
 let currentCalendarDate = new Date();
-let calendarViewMode = 'month'; // 'month' o 'week'
 let selectedDate = null;
 
 // Elementos del DOM para el calendario
 const calendarMonthView = document.getElementById('calendarMonthView');
-const calendarWeekView = document.getElementById('calendarWeekView');
 const calendarDaysGrid = document.getElementById('calendarDaysGrid');
-const calendarWeekGrid = document.getElementById('calendarWeekGrid');
 const currentMonthYear = document.getElementById('currentMonthYear');
 const prevMonth = document.getElementById('prevMonth');
 const nextMonth = document.getElementById('nextMonth');
-const monthViewBtn = document.getElementById('monthViewBtn');
-const weekViewBtn = document.getElementById('weekViewBtn');
 const dayDetailsModal = document.getElementById('dayDetailsModal');
 const dayDetailsTitle = document.getElementById('dayDetailsTitle');
 const dayTasksList = document.getElementById('dayTasksList');
@@ -35,39 +30,12 @@ const dayNames = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado
 function setupCalendarEvents() {
   // Navegación entre meses
   prevMonth.addEventListener('click', () => {
-    if (calendarViewMode === 'month') {
-      currentCalendarDate.setMonth(currentCalendarDate.getMonth() - 1);
-    } else {
-      currentCalendarDate.setDate(currentCalendarDate.getDate() - 7);
-    }
+    currentCalendarDate.setMonth(currentCalendarDate.getMonth() - 1);
     renderCalendar();
   });
 
   nextMonth.addEventListener('click', () => {
-    if (calendarViewMode === 'month') {
-      currentCalendarDate.setMonth(currentCalendarDate.getMonth() + 1);
-    } else {
-      currentCalendarDate.setDate(currentCalendarDate.getDate() + 7);
-    }
-    renderCalendar();
-  });
-
-  // Cambiar entre vistas
-  monthViewBtn.addEventListener('click', () => {
-    calendarViewMode = 'month';
-    monthViewBtn.classList.add('active');
-    weekViewBtn.classList.remove('active');
-    calendarMonthView.classList.remove('hidden');
-    calendarWeekView.classList.add('hidden');
-    renderCalendar();
-  });
-
-  weekViewBtn.addEventListener('click', () => {
-    calendarViewMode = 'week';
-    weekViewBtn.classList.add('active');
-    monthViewBtn.classList.remove('active');
-    calendarWeekView.classList.remove('hidden');
-    calendarMonthView.classList.add('hidden');
+    currentCalendarDate.setMonth(currentCalendarDate.getMonth() + 1);
     renderCalendar();
   });
 
@@ -125,14 +93,10 @@ function setupCalendarEvents() {
 }
 
 /**
- * Renderiza el calendario basado en la vista actual (mes o semana)
+ * Renderiza el calendario
  */
 function renderCalendar() {
-  if (calendarViewMode === 'month') {
-    renderMonthView();
-  } else {
-    renderWeekView();
-  }
+  renderMonthView();
 }
 
 /**
@@ -261,121 +225,6 @@ function createDayElement(date, isOtherMonth = false, isToday = false) {
   dayElement.addEventListener('click', () => showDayDetails(date));
   
   return dayElement;
-}
-
-/**
- * Renderiza la vista de semana del calendario
- */
-function renderWeekView() {
-  // Obtener la fecha del lunes de la semana actual
-  const date = new Date(currentCalendarDate);
-  const day = date.getDay();
-  const diff = date.getDate() - day + (day === 0 ? -6 : 1); // Ajustar para que la semana comience en lunes
-  const monday = new Date(date.setDate(diff));
-  
-  // Actualizar título
-  const weekEnd = new Date(new Date(monday).setDate(monday.getDate() + 6));
-  const monthStart = monthNames[monday.getMonth()];
-  const monthEnd = monthNames[weekEnd.getMonth()];
-  
-  if (monthStart === monthEnd) {
-    currentMonthYear.textContent = `${monthStart} ${monday.getFullYear()}`;
-  } else {
-    currentMonthYear.textContent = `${monthStart} - ${monthEnd} ${monday.getFullYear()}`;
-  }
-  
-  calendarWeekGrid.innerHTML = '';
-  
-  // Crear columna para cada día de la semana
-  for (let i = 0; i < 7; i++) {
-    const dayDate = new Date(new Date(monday).setDate(monday.getDate() + i));
-    const dayColumn = createWeekDayColumn(dayDate);
-    calendarWeekGrid.appendChild(dayColumn);
-  }
-}
-
-/**
- * Crea una columna para un día en la vista de semana
- */
-function createWeekDayColumn(date) {
-  const dayColumn = document.createElement('div');
-  dayColumn.className = 'week-day-column';
-  
-  const isToday = isSameDay(date, new Date());
-  
-  // Crear encabezado del día
-  const dayHeader = document.createElement('div');
-  dayHeader.className = 'week-day-header';
-  if (isToday) {
-    dayHeader.classList.add('day-current');
-  }
-  
-  dayHeader.textContent = `${dayNames[getDayOfWeek(date)]} ${date.getDate()}`;
-  dayColumn.appendChild(dayHeader);
-  
-  // Contenedor de eventos
-  const eventsContainer = document.createElement('div');
-  eventsContainer.className = 'week-day-events';
-  
-  // Obtener tareas y eventos para este día
-  const dayTasks = getTasksForDate(date);
-  const dayEvents = getEventsForDate(date);
-  
-  // Agregar tareas
-  dayTasks.forEach(task => {
-    const taskElement = document.createElement('div');
-    taskElement.className = 'week-event week-task';
-    
-    const taskTime = new Date(task.dueDate);
-    const hours = taskTime.getHours().toString().padStart(2, '0');
-    const minutes = taskTime.getMinutes().toString().padStart(2, '0');
-    
-    taskElement.innerHTML = `
-      <div class="week-event-time">${hours}:${minutes}</div>
-      <div class="week-event-title">${task.title}</div>
-    `;
-    
-    taskElement.addEventListener('click', () => showDayDetails(date));
-    eventsContainer.appendChild(taskElement);
-  });
-  
-  // Agregar eventos
-  dayEvents.forEach(event => {
-    const eventElement = document.createElement('div');
-    eventElement.className = 'week-event week-event-item';
-    
-    const eventTime = new Date(event.date);
-    const hours = eventTime.getHours().toString().padStart(2, '0');
-    const minutes = eventTime.getMinutes().toString().padStart(2, '0');
-    
-    eventElement.innerHTML = `
-      <div class="week-event-time">${hours}:${minutes}</div>
-      <div class="week-event-title">${event.title}</div>
-    `;
-    
-    eventElement.addEventListener('click', () => showDayDetails(date));
-    eventsContainer.appendChild(eventElement);
-  });
-  
-  // Si no hay tareas ni eventos, mostrar mensaje
-  if (dayTasks.length === 0 && dayEvents.length === 0) {
-    const emptyElement = document.createElement('div');
-    emptyElement.className = 'week-empty';
-    emptyElement.textContent = 'No hay actividades';
-    eventsContainer.appendChild(emptyElement);
-  }
-  
-  dayColumn.appendChild(eventsContainer);
-  
-  // Agregar evento click para mostrar detalles del día
-  dayColumn.addEventListener('click', (e) => {
-    // Solo mostrar detalles si se hace clic en la columna, no en un evento específico
-    if (e.target === dayColumn || e.target === eventsContainer) {
-      showDayDetails(date);
-    }
-  });
-  
-  return dayColumn;
 }
 
 /**
