@@ -107,7 +107,6 @@ async function loadNews(source = null) {
     const sourceSelector = document.createElement("div");
     sourceSelector.className = "news-source-selector";
     sourceSelector.innerHTML = `
-      <label for="newsSource">Fuente de noticias:</label>
       <select id="newsSource">
         ${createNewsSourceOptions()}
       </select>
