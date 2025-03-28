@@ -2,7 +2,7 @@
 async function getWeather(city = "Sevilla") {
   try {
     const apiUrl = "https://wttr.in/";
-    const format = "?format=%C+%t";
+    const format = "?format= %c %t"; // %m para emoji, %C para condición, %t para temperatura
 
     const sanitizedCity = encodeURIComponent(city.trim() || "Sevilla");
     const url = `${apiUrl}${sanitizedCity}${format}`;
@@ -19,12 +19,13 @@ async function getWeather(city = "Sevilla") {
       throw new Error("Ciudad no encontrada");
     }
 
-    return `<i class="fas fa-cloud-sun"></i> ${city}: ${weatherData.trim()}`;
+    return `${city}: ${weatherData.trim()}`;
   } catch (error) {
     console.error("Error al obtener el clima:", error);
-    return `<i class="fas fa-exclamation-circle"></i> No se pudo obtener el clima para "${city}"`;
+    return `⚠️ No se pudo obtener el clima para "${city}"`;
   }
 }
+
 
 // Obtiene noticias desde la API
 async function getNews(source = null) {

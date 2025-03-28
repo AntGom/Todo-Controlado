@@ -72,17 +72,34 @@ function setupTabs() {
   });
 }
 
+// Variable para guardar el valor original de la ciudad
+let lastSearchedCity = defaultCity;
+
 // Busca información del clima para una ciudad
 async function searchWeather(city) {
   try {
     weatherInfo.innerHTML = "<p>Cargando información del clima...</p>";
+    lastSearchedCity = city;
 
     const weatherHtml = await getWeather(city);
     weatherInfo.innerHTML = `<div class="weather-display">${weatherHtml}</div>`;
+    
+    // Mostrar resultado en el input
+    const weatherText = weatherHtml.replace(/<[^>]*>/g, ''); // Eliminar etiquetas HTML
+    cityInput.value = weatherText;
+    
+    // Cambiar el estilo del input
+    cityInput.classList.add("weather-result");
   } catch (error) {
     weatherInfo.innerHTML = "<p>Error al obtener el clima.</p>";
     console.error("Error al buscar el clima:", error);
   }
+}
+
+// Función para restaurar el input a su estado de búsqueda
+function resetWeatherInput() {
+  cityInput.value = lastSearchedCity;
+  cityInput.classList.remove("weather-result");
 }
 
 // Carga y muestra noticias

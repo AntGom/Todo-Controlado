@@ -30,9 +30,8 @@
     <header>
       <div class="header-container">
         <div class="logo">
-          <img src="./img/libreta.png" alt="">
+          <img src="./img/libreta.png" alt="Logo Agenda">
           <h1>Agenda Maestra</h1>
-
         </div>
         <div class="weather-container">
           <div class="weather-search">
@@ -41,31 +40,19 @@
           </div>
           <div id="weatherInfo" class="weather-info"></div>
         </div>
-
       </div>
     </header>
+    
     <div id="currentDateTime" class="current-date-time">
       <!-- Fecha y hora aquí -->
     </div>
 
-    <!-- Contenedor prpal -->
+    <!-- Contenedor principal -->
     <div class="main-container">
-      <!-- Sidebar -->
-      <div class="sidebar">
-        <div class="news-container">
-          <div class="news-header">
-            <img src="./img/noticias.png" alt="">
-            <h2>Noticias</h2>
-          </div>
-          
-          <div id="newsList" class="news-list"></div>
-        </div>
-      </div>
-
       <!-- Panel central - Lista de tareas -->
       <div class="tasks-container">
         <div class="tasks-header">
-          <h2>Mis Tareas</h2>
+          <h2>Mi Agenda</h2>
           <div class="dropdown-container">
             <div class="dropdown-header" id="filterDropdown">
               <span id="currentFilterText">Todas las tareas</span>
@@ -132,6 +119,18 @@
               <!-- Días del calendario se generarán aquí -->
             </div>
           </div>
+        </div>
+      </div>
+      
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="news-container">
+          <div class="news-header">
+            <img src="./img/noticias.png" alt="Icono noticias">
+            <h2>Noticias</h2>
+          </div>
+          
+          <div id="newsList" class="news-list"></div>
         </div>
       </div>
     </div>
@@ -224,7 +223,5 @@
       </div>
     </div>
   </div>
-
 </body>
-
 </html>

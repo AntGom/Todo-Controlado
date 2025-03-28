@@ -40,38 +40,44 @@ header {
   background-color: white;
   box-shadow: var(--shadow);
   padding: 1rem;
-}
-
-header img{
-  height: 2rem;
-  width: 2rem;
-}
-
-.logo{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .header-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
 }
 
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo img {
+  height: 2.5rem;
+  width: auto;
+}
+
 header h1 {
   color: var(--primary-color);
   font-weight: 700;
+  font-size: 1.5rem;
 }
 
 .current-date-time {
   font-size: 0.9rem;
   color: var(--dark-gray);
   text-align: center;
-  margin-top: 1rem;
+  background-color: white;
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--light-gray);
+  font-weight: 500;
 }
 
 /* Weather container */
@@ -80,17 +86,17 @@ header h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: var(--bg-color);
+  background-color: white;
   border-radius: var(--border-radius);
   max-width: fit-content;
+  border: 1px solid var(--light-gray);
 }
 
 .weather-search {
   display: flex;
-  padding: 0.5rem 0.5rem 0 0.5rem;
+  padding: 0.5rem;
   width: 100%;
   gap: 0.5rem;
-  justify-content: space-around;
 }
 
 .weather-search input {
@@ -100,17 +106,29 @@ header h1 {
   outline: none;
   width: 75%;
   font-size: 0.9rem;
+  transition: var(--transition);
+}
+
+.weather-search input.weather-result {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-weight: 500;
+  border-color: var(--primary-color);
+  cursor: pointer;
 }
 
 .weather-search button {
   background-color: var(--primary-color);
   color: white;
   border: none;
-  padding: 0.5rem 0.7rem;
+  padding: 0.5rem;
   cursor: pointer;
   border-radius: var(--border-radius);
   transition: var(--transition);
-  width: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
 }
 
 .weather-search button:hover {
@@ -122,6 +140,8 @@ header h1 {
   color: var(--dark-gray);
   width: 100%;
   padding: 0.7rem;
+  text-align: center;
+  display: none; /* Ocultamos la info separada ya que ahora va en el input */
 }
 
 .weather-display {
@@ -136,14 +156,6 @@ header h1 {
   font-size: 1.2rem;
 }
 
-.weather-details {
-  flex: 1;
-}
-
-.weather-location {
-  font-weight: 500;
-}
-
 /* Main container */
 .main-container {
   display: flex;
@@ -151,40 +163,39 @@ header h1 {
   max-width: 1200px;
   margin: 0 auto;
   padding: 1rem;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 /* Sidebar */
 .sidebar {
-  flex: 0 0 15.5rem;
+  flex: 0 0 300px;
   background-color: white;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
-  padding: 1rem;
-}
-
-.sidebar h2 {
-  color: var(--text-color);
-  font-size: 1.1rem;
+  padding: 1.25rem;
+  align-self: flex-start;
+  position: sticky;
+  top: 5.5rem;
 }
 
 /* Dropdown menu */
 .dropdown-container {
   position: relative;
+  margin-bottom: 1rem;
 }
 
 .dropdown-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.8rem;
+  padding: 0.8rem 1rem;
   background-color: var(--primary-color);
   color: white;
   border-radius: var(--border-radius);
   cursor: pointer;
   transition: var(--transition);
   user-select: none;
-  height: 1.9rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .dropdown-header:hover {
@@ -220,7 +231,6 @@ header h1 {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.8rem;
 }
 
 .dropdown-item:hover {
@@ -239,25 +249,43 @@ header h1 {
 }
 
 /* Noticias */
+.news-container {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
 
-.news-header{
+.news-header {
   display: flex;
-  justify-content: center;
-  gap: 0.3rem;
-  padding: auto;
-  margin-bottom: 0.5rem;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-bottom: 1px solid var(--light-gray);
+  background-color: var(--bg-color);
+}
+
+.news-header img {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.news-header h2 {
+  font-size: 1.1rem;
+  margin: 0;
+  color: var(--text-color);
+}
+
+.news-list {
+  padding: 1rem;
+  max-height: 400px;
+  overflow-y: auto;
 }
 
 .news-source-selector {
+  margin-bottom: 1rem;
   padding-bottom: 0.8rem;
   border-bottom: 1px solid var(--light-gray);
-}
-
-.news-source-selector label {
-  display: block;
-  margin-bottom: 0.3rem;
-  font-size: 0.9rem;
-  color: var(--dark-gray);
 }
 
 .news-source-selector select {
@@ -275,6 +303,10 @@ header h1 {
   border-bottom: 1px solid var(--light-gray);
 }
 
+.news-item:last-child {
+  border-bottom: none;
+}
+
 .news-item h3 {
   font-size: 0.9rem;
   margin-bottom: 0.3rem;
@@ -290,7 +322,7 @@ header h1 {
   text-decoration: none;
   font-size: 0.8rem;
   display: inline-block;
-  margin-top: 0rem;
+  margin-top: 0.3rem;
 }
 
 .news-item a:hover {
@@ -298,50 +330,62 @@ header h1 {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .main-container {
-    flex-direction: column;
-  }
-  
-  /* Reordenar elementos en móvil, mostrando primero el planeador */
-  .main-container {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .tasks-container {
-    order: 1; 
+    padding: 0.75rem;
+    gap: 1rem;
   }
   
   .sidebar {
-    order: 2; 
-    flex: auto;
-    width: 100%;
-    margin-top: 1rem;
+    flex: 0 0 250px;
   }
-  
+}
+
+@media (max-width: 768px) {
   .header-container {
     flex-direction: column;
-    align-items: center;
-    gap: 0.8rem;
-    text-align: center;
+    gap: 1rem;
   }
-
-  header h1{
-    font-size:1.8rem;
+  
+  .main-container {
+    flex-direction: column;
+    padding: 0.5rem;
+  }
+  
+  .sidebar {
+    width: 100%;
+    position: static;
+    margin-bottom: 1rem;
+    order: 2;
+  }
+  
+  .tasks-container {
+    order: 1;
+  }
+  
+  .current-date-time {
+    font-size: 0.8rem;
   }
   
   .weather-container {
-    align-items: center;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .tasks-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .task-btns {
+    display: flex;
+    gap: 0.5rem;
     width: 100%;
   }
   
-  .weather-search {
-    width: 100%;
-  }
-  
-  .weather-search input {
+  .primary-btn, .secondary-btn {
     flex: 1;
+    justify-content: center;
   }
-  
 }

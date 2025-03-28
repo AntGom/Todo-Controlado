@@ -65,22 +65,30 @@ filterItems.forEach((item) => {
 // Evento para buscar clima
 searchWeatherBtn.addEventListener("click", () => {
   const city = cityInput.value.trim();
-  if (city) {
+  if (city && !cityInput.classList.contains("weather-result")) {
     searchWeather(city);
+  }
+});
+
+// Evento para limpiar el input del clima al hacer clic en él
+cityInput.addEventListener("click", () => {
+  if (cityInput.classList.contains("weather-result")) {
+    resetWeatherInput();
   }
 });
 
 // También buscar clima al presionar Enter
 cityInput.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") {
+  if (e.key === "Enter" && !cityInput.classList.contains("weather-result")) {
     const city = cityInput.value.trim();
     if (city) {
       searchWeather(city);
     }
+    e.preventDefault();
   }
 });
 
-// Cerrar modales si clic fuera del contenido
+// Cerrar modales al hacer clic fuera del contenido
 window.addEventListener("click", (e) => {
   if (e.target === taskModal) {
     closeTaskModal();

@@ -192,8 +192,8 @@ function createDayElement(date, isOtherMonth = false, isToday = false) {
     
     // Mostrar hasta 3 elementos (combinando tareas y eventos)
     const allItems = [...dayTasks, ...dayEvents];
-    const visibleItems = allItems.slice(0, 3);
-    const remainingItems = allItems.length - 3;
+    const visibleItems = allItems.slice(0, 2);
+    const remainingItems = allItems.length - 2;
     
     visibleItems.forEach(item => {
       const itemElement = document.createElement('div');
@@ -201,20 +201,20 @@ function createDayElement(date, isOtherMonth = false, isToday = false) {
       
       if ('dueDate' in item) { // Es una tarea
         itemElement.classList.add('day-item-task');
-        itemElement.innerHTML = `<i class="fas fa-tasks"></i> ${item.title}`;
+        itemElement.innerHTML = `<i class="fas fa-tasks"></i>`;
       } else { // Es un evento
         itemElement.classList.add('day-item-event');
-        itemElement.innerHTML = `<i class="fas fa-calendar-alt"></i> ${item.title}`;
+        itemElement.innerHTML = `<i class="fas fa-calendar-alt"></i>`;
       }
       
       itemsContainer.appendChild(itemElement);
     });
     
-    // Si hay más de 3 elementos, mostrar indicador
+    // Si hay más de 3 elementos, mostrar +
     if (remainingItems > 0) {
       const moreItemsElement = document.createElement('div');
       moreItemsElement.className = 'more-items';
-      moreItemsElement.textContent = `+ ${remainingItems} más`;
+      moreItemsElement.textContent = `+`;
       itemsContainer.appendChild(moreItemsElement);
     }
     
