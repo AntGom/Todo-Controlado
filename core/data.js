@@ -13,7 +13,9 @@ const newsSources = {
   elMundo:
     "https://api.rss2json.com/v1/api.json?rss_url=https://e00-elmundo.uecdn.es/elmundo/rss/portada.xml",
   marcaMotor: 
-  "https://api.rss2json.com/v1/api.json?rss_url=https://e00-marca.uecdn.es/rss/motor/formula1.xml",
+    "https://api.rss2json.com/v1/api.json?rss_url=https://e00-marca.uecdn.es/rss/motor/formula1.xml",
+  motoGP: 
+    "https://api.rss2json.com/v1/api.json?rss_url=https://e00-marca.uecdn.es/rss/motor/motogp.xml",
 };
 
 // Mapeo de filtros a nombres legibles

@@ -58,7 +58,9 @@ function formatSourceName(sourceId) {
     case "elMundo":
       return "El Mundo";
     case "marcaMotor":
-      return "Fórmula 1";
+      return "Fórmula-1";
+      case "motoGP":
+      return "Moto GP";
     default:
       return sourceId;
   }
