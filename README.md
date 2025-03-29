@@ -1,25 +1,29 @@
-# ¡¡ORGANÍZATE!! - Gestor de Tareas y Eventos
+# ¡TODO CONTROLADO! - Organizador Personal
 
-Una aplicación web para la organización personal que permite gestionar tareas, eventos, consultar el clima y leer noticias, todo en un solo lugar.
+[![HTML5](https://img.shields.io/badge/HTML5-blue)](https://developer.mozilla.org/es/docs/Web/HTML)
+[![CSS3](https://img.shields.io/badge/CSS3-purple)](https://developer.mozilla.org/es/docs/Web/CSS)
+[![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow)](https://developer.mozilla.org/es/docs/Web/JavaScript)
+
+Una aplicación web moderna para la organización personal que permite gestionar tareas, eventos, consultar el clima y leer noticias deportivas y generalistas, todo en un único lugar.
 
 ## 🚀 Características
 
 - **Gestión de tareas**: Crea, edita y elimina tareas con diferentes estados (pendiente, en progreso, completada)
 - **Gestión de eventos**: Organiza tus eventos con detalles como ubicación y fecha
-- **Calendario interactivo**: Visualiza tus tareas y eventos en formato de mes o semana
-- **Información meteorológica**: Consulta el clima de cualquier ciudad
-- **Lector de noticias**: Lee las últimas noticias de fuentes como El País, El Mundo y ABC
-- **Almacenamiento local**: Tus datos se guardan en el navegador gracias a localStorage
-- **Diseño responsive**: Adaptado a dispositivos móviles y de escritorio
+- **Calendario mensual**: Visualiza tus tareas y eventos para tener una perspectiva clara de tu agenda
+- **Información meteorológica**: Consulta el clima de cualquier ciudad directamente desde la cabecera
+- **Lector de noticias**: Mantente informado con noticias de diferentes fuentes (El País, El Mundo, Fórmula 1, MotoGP)
+- **Interfaz adaptable**: Diseño que se ajusta a cualquier dispositivo, desde móviles hasta pantallas de escritorio
+- **Almacenamiento local**: Tus datos se guardan en tu navegador gracias a localStorage
 
 ## 🛠️ Tecnologías utilizadas
 
-- **HTML5**: Estructura semántica
-- **CSS3**: Estilos personalizados con variables CSS
-- **JavaScript (ES6+)**: Programación orientada a objetos
-- **LocalStorage API**: Persistencia de datos en el navegador
+- **HTML5**: Estructura semántica con etiquetas modernas
+- **CSS3**: Sistema de estilos personalizado con variables CSS
+- **JavaScript (ES6+)**: Programación modular orientada a objetos
+- **LocalStorage API**: Para la persistencia de datos en el navegador
 - **Fetch API**: Consumo de servicios externos (clima y noticias)
-- **Font Awesome**: Iconos vectoriales
+- **Font Awesome**: Iconografía vectorial
 
 ## 📁 Estructura del proyecto
 
@@ -29,11 +33,11 @@ Una aplicación web para la organización personal que permite gestionar tareas,
 ├── index.html            # Estructura HTML
 │
 ├── css/                  # Estilos de la aplicación
-│   ├── base.css          # Estilos básicos y layout
-│   ├── components.css    # Componentes reutilizables
+│   ├── base.css          # Estilos básicos, variables y layout
+│   ├── components.css    # Estilos para componentes como tareas y modales
 │   └── calendar.css      # Estilos específicos del calendario
 │
-├── core/                 # Lógica central y manejo de datos
+├── core/                 # Lógica central de la aplicación
 │   ├── data.js           # Gestión de datos y almacenamiento
 │   ├── tasks.js          # Operaciones CRUD para tareas
 │   └── events.js         # Operaciones CRUD para eventos
@@ -41,91 +45,98 @@ Una aplicación web para la organización personal que permite gestionar tareas,
 ├── services/             # Servicios externos
 │   └── apiService.js     # Conexión con APIs (clima, noticias)
 │
-└── ui/                   # Componentes de interfaz de usuario
-    ├── core.js           # Funciones básicas de UI
-    ├── tasks.js          # UI de tareas
-    ├── events.js         # UI de eventos
-    └── calendar.js       # Funcionalidad del calendario
+├── ui/                   # Componentes de interfaz de usuario
+│   ├── core.js           # Funciones básicas de UI y gestión de pestañas
+│   ├── tasks.js          # UI para gestión de tareas
+│   ├── events.js         # UI para gestión de eventos
+│   └── calendar.js       # Funcionalidad del calendario
+│
+└── img/                  # Imágenes e iconos
+    ├── agenda.png        # Favicon
+    └── noticias.png      # Iconos para secciones
 ```
 
 ## 🧩 Arquitectura
 
-La aplicación está estructurada siguiendo un patrón de arquitectura por responsabilidades:
+La aplicación está estructurada siguiendo un patrón modular por responsabilidades:
 
 ### 1. Capa de datos (core/)
-Gestiona el almacenamiento, recuperación y manipulación de los datos:
-- **data.js**: Define las estructuras de datos principales y las funciones para guardar/cargar datos de localStorage
-- **tasks.js**: Implementa operaciones CRUD específicas para tareas
-- **events.js**: Implementa operaciones CRUD específicas para eventos
+- **data.js**: Define las estructuras de datos principales y gestiona localStorage
+- **tasks.js**: Implementa operaciones CRUD para tareas
+- **events.js**: Implementa operaciones CRUD para eventos
 
 ### 2. Capa de servicios (services/)
-Encapsula la comunicación con servicios externos:
 - **apiService.js**: Proporciona funciones para obtener datos meteorológicos y noticias
 
 ### 3. Capa de UI (ui/)
-Contiene todos los componentes visuales y la lógica de interacción:
-- **core.js**: Inicializa elementos DOM, controla pestañas y componentes comunes
+- **core.js**: Inicializa elementos DOM y controla la navegación entre pestañas
 - **tasks.js**: Renderiza y gestiona interacciones con tareas
 - **events.js**: Renderiza y gestiona interacciones con eventos
-- **calendar.js**: Implementa el calendario con vistas de mes y semana
+- **calendar.js**: Implementa el calendario mensual
 
 ### 4. Punto de entrada (app.js)
 Inicializa la aplicación y conecta todas las capas.
 
 
+
 ## 📋 Funcionalidades detalladas
+
+### Panel del Clima
+- Visualización en tiempo real del clima para cualquier ciudad
+- Búsqueda intuitiva con actualización instantánea
+- Muestra temperatura y condición meteorológica
+- El resultado se muestra directamente en el campo de búsqueda
 
 ### Gestión de tareas
 - Crear nuevas tareas con título, descripción, fecha límite y estado
 - Filtrar tareas por estado (todas, pendientes, en progreso, completadas)
 - Editar y eliminar tareas existentes
+- Filtros accesibles solo desde la pestaña de tareas
 
 ### Gestión de eventos
 - Crear eventos con título, detalles, fecha/hora y ubicación
-- Ver lista de eventos ordenados por fecha
-- Editar y eliminar eventos
+- Ver lista de eventos ordenados cronológicamente
+- Editar y eliminar eventos existentes
 
 ### Calendario
-- Vista mensual con días del mes actual y parciales del anterior/siguiente
-- Vista semanal con eventos y tareas por día
-- Modal de detalles al hacer clic en un día específico
-- Navegación entre meses/semanas con botones de anterior/siguiente
-
-### Clima
-- Visualización del clima para una ciudad predeterminada (Sevilla por defecto)
-- Búsqueda de clima para cualquier ciudad
-- Muestra temperatura y condición meteorológica
+- Vista mensual con indicadores visuales de tareas y eventos
+- Navegación intuitiva entre meses
+- Modal detallado al hacer clic en un día específico
+- Creación rápida de tareas y eventos desde la vista de calendario
 
 ### Noticias
-- Selector de fuentes de noticias (El País, El Mundo, Marca Motor)
-- Visualización de los titulares más recientes
-- Enlaces para leer las noticias completas
+- Acceso a múltiples fuentes de noticias (El País, El Mundo, deportivas)
+- Selección rápida entre fuentes
+- Visualización de titulares y resúmenes
+- Enlaces directos a las noticias completas
 
 ## 🔄 Flujo de datos
 
-1. Al iniciar, la aplicación carga los datos guardados en localStorage
+1. Al iniciar, la aplicación carga datos desde localStorage
 2. Las acciones del usuario se capturan en la capa UI
 3. Estas acciones se procesan en la capa de datos
-4. Los cambios se guardan en localStorage
+4. Los cambios se guardan automáticamente en localStorage
 5. La UI se actualiza para reflejar los cambios
 
-## 📱 Diseño Responsivo
+## 📱 Responsive Design
 
 La aplicación se adapta a diferentes tamaños de pantalla:
-- **Escritorio**: Vista completa con sidebar y panel principal
-- **Tablet**: Reorganización de elementos para adaptarse a pantallas medianas
-- **Móvil**: Vista apilada para mejor usabilidad en pantallas pequeñas
+- **Escritorio**: Vista completa con sidebar de noticias a la derecha
+- **Tablet**: Reorganización de elementos para aprovechar el espacio
+- **Móvil**: 
+  - Interfaz compacta con elementos apilados
+  - Botones de acción en línea cuando no se muestra el filtro de tareas
+  - Diseño optimizado para interacción táctil
 
 ## 🌐 APIs utilizadas
 
-- **Clima**: API de wttr.in para obtener información meteorológica
-- **Noticias**: APIs RSS de El País, El Mundo y Marca Motor convertidas a JSON mediante api.rss2json.com
+- **Clima**: API de wttr.in para obtener información meteorológica en formato compacto
+- **Noticias**: APIs RSS de El País, El Mundo, y contenido deportivo de Marca (convertidas a JSON mediante api.rss2json.com)
 
 ## 🔗 Enlaces útiles
 
-- [API de localStorage](https://developer.mozilla.org/es/docs/Web/API/Window/localStorage)
 - [Servicio wttr.in](https://github.com/chubin/wttr.in)
 
 ---
 
-Desarrollado como proyecto de demostración por [Tu Nombre] © 2025
+Desarrollado por Antonio Gómez © 2025. Desde Andalucía, con ❤.
