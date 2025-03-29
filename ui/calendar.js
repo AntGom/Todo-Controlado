@@ -210,7 +210,7 @@ function createDayElement(date, isOtherMonth = false, isToday = false) {
       itemsContainer.appendChild(itemElement);
     });
     
-    // Si hay más de 3 elementos, mostrar +
+    // Si hay más de 2 elementos, mostrar +
     if (remainingItems > 0) {
       const moreItemsElement = document.createElement('div');
       moreItemsElement.className = 'more-items';

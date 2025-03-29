@@ -370,15 +370,18 @@
     gap: 1rem;
   }
   
-  .task-btns {
-    width: auto;
+  /* Ya no esta task-btns en columna por defecto.
+     Ahora se controla desde JS 
+     basado en la pestaña activa */
+  .tasks-header:has(.dropdown-container[style*="display: block"]) .task-btns {
     flex-direction: column;
-    margin: 0;
+    width: auto;
   }
   
   .primary-btn, .secondary-btn {
-    width: 100%;
-    font-size: 0.8rem;
+    white-space: nowrap;
+    font-size: 0.85rem;
+    padding: 0.5rem 0.75rem;
   }
   
   .content-tabs {

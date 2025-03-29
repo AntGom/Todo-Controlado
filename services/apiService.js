@@ -2,7 +2,7 @@
 async function getWeather(city = "Sevilla") {
   try {
     const apiUrl = "https://wttr.in/";
-    const format = "?format= %c %t"; // %m para emoji, %C para condición, %t para temperatura
+    const format = "?format= %c %t"; // %C para condición, %t para temperatura
 
     const sanitizedCity = encodeURIComponent(city.trim() || "Sevilla");
     const url = `${apiUrl}${sanitizedCity}${format}`;

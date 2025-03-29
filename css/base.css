@@ -350,31 +350,31 @@ header {
   }
   
   .tasks-header {
-    flex-direction: row; /* Cambiamos a fila en lugar de columna */
+    flex-direction: row; 
     align-items: center;
-    gap: 0.5rem; /* Reducimos el espacio entre elementos */
-    flex-wrap: wrap; /* Permite que los elementos se ajusten en múltiples líneas si es necesario */
+    gap: 0.5rem; 
+    flex-wrap: wrap; 
   }
   
   .dropdown-container {
-    flex: 2; /* Ocupa espacio disponible */
-    min-width: 120px; /* Ancho mínimo para el dropdown */
+    flex: 2; 
+    min-width: 120px; 
   }
   
   .task-btns {
     display: flex;
     gap: 0.5rem;
-    width: auto; /* Cambiamos de 100% a auto */
-    flex: 2; /* Ocupa más espacio que el dropdown */
+    width: auto; 
+    flex: 2;
   }
   
   .primary-btn, .secondary-btn {
     flex: 1;
-    padding: 0.5rem; /* Reducimos el padding */
-    font-size: 0.8rem; /* Reducimos el tamaño de fuente */
+    padding: 0.5rem;
+    font-size: 0.8rem;
   }
   
   .primary-btn i, .secondary-btn i {
-    margin-right: 0.3rem; /* Reducimos el margen del icono */
+    margin-right: 0.3rem;
   }
 }

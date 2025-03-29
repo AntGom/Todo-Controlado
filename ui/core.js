@@ -23,6 +23,8 @@ const weatherInfo = document.getElementById("weatherInfo");
 const cityInput = document.getElementById("cityInput");
 const searchWeatherBtn = document.getElementById("searchWeather");
 const newsList = document.getElementById("newsList");
+const dropdownContainer = document.querySelector(".dropdown-container");
+const taskBtns = document.querySelector(".task-btns");
 
 // Ciudad predeterminada para el clima
 const defaultCity = "Sevilla";
@@ -50,6 +52,17 @@ function setupTabs() {
     showTasksTab.classList.add("active");
     showEventsTab.classList.remove("active");
     showCalendarTab.classList.remove("active");
+    
+    // Mostrar el dropdown de filtro cuando estamos en la pestaña de tareas
+    if (dropdownContainer) {
+      dropdownContainer.style.display = 'block';
+    }
+    
+    // Restaurar dirección de los botones (puede ser en columna en móvil)
+    if (taskBtns) {
+      taskBtns.style.flexDirection = '';
+      taskBtns.style.width = '';
+    }
   });
 
   showEventsTab.addEventListener("click", () => {
@@ -59,6 +72,17 @@ function setupTabs() {
     showTasksTab.classList.remove("active");
     showEventsTab.classList.add("active");
     showCalendarTab.classList.remove("active");
+    
+    // Ocultar el dropdown de filtro cuando no estamos en la pestaña de tareas
+    if (dropdownContainer) {
+      dropdownContainer.style.display = 'none';
+    }
+    
+    // Poner botones en fila cuando el filtro está oculto
+    if (taskBtns) {
+      taskBtns.style.flexDirection = 'row';
+      taskBtns.style.width = '100%';
+    }
   });
 
   showCalendarTab.addEventListener("click", () => {
@@ -68,8 +92,34 @@ function setupTabs() {
     showTasksTab.classList.remove("active");
     showEventsTab.classList.remove("active");
     showCalendarTab.classList.add("active");
-    renderCalendar(); // Renderizar calendario al activar pestaña
+    renderCalendar();
+    
+    // Ocultar filtro cuando no estamos en pestaña de tareas
+    if (dropdownContainer) {
+      dropdownContainer.style.display = 'none';
+    }
+    
+    // Poner botones en fila cuando el filtro está oculto
+    if (taskBtns) {
+      taskBtns.style.flexDirection = 'row';
+      taskBtns.style.width = '100%';
+    }
   });
+  
+  // Filtro se muestre ok al cargar la página según pestaña activa
+  setTimeout(() => {
+    if (!showTasksTab.classList.contains('active')) {
+      if (dropdownContainer) {
+        dropdownContainer.style.display = 'none';
+      }
+      
+      // Poner botones en fila si no estamos en la pestaña de tareas al inicio
+      if (taskBtns) {
+        taskBtns.style.flexDirection = 'row';
+        taskBtns.style.width = '100%';
+      }
+    }
+  }, 0);
 }
 
 // Variable para guardar el valor original de la ciudad
@@ -94,7 +144,7 @@ async function searchWeather(city) {
   }
 }
 
-// Función para restaurar el input a su estado de búsqueda
+// Restaurar el input a su estado de búsqueda
 function resetWeatherInput() {
   cityInput.value = lastSearchedCity;
   cityInput.classList.remove("weather-result");
