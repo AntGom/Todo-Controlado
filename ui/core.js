@@ -68,27 +68,25 @@ function setupTabs() {
     showTasksTab.classList.remove("active");
     showEventsTab.classList.remove("active");
     showCalendarTab.classList.add("active");
-    renderCalendar(); // Renderizar el calendario cuando se activa la pestaña
+    renderCalendar(); // Renderizar calendario al activar pestaña
   });
 }
 
 // Variable para guardar el valor original de la ciudad
 let lastSearchedCity = defaultCity;
 
-// Busca información del clima para una ciudad
+// Busca info del clima para una ciudad
 async function searchWeather(city) {
   try {
     weatherInfo.innerHTML = "<p>Cargando información del clima...</p>";
     lastSearchedCity = city;
 
+    // Obtener y mostrar info del clima
     const weatherHtml = await getWeather(city);
     weatherInfo.innerHTML = `<div class="weather-display">${weatherHtml}</div>`;
-    
-    // Mostrar resultado en el input
-    const weatherText = weatherHtml.replace(/<[^>]*>/g, ''); // Eliminar etiquetas HTML
-    cityInput.value = weatherText;
-    
-    // Cambiar el estilo del input
+
+    // Mostrar resultado en input y aplicar estilo
+    cityInput.value = weatherHtml;
     cityInput.classList.add("weather-result");
   } catch (error) {
     weatherInfo.innerHTML = "<p>Error al obtener el clima.</p>";
@@ -101,6 +99,7 @@ function resetWeatherInput() {
   cityInput.value = lastSearchedCity;
   cityInput.classList.remove("weather-result");
 }
+
 
 // Carga y muestra noticias
 async function loadNews(source = null) {

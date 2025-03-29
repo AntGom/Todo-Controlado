@@ -10,9 +10,9 @@
 
 .tasks-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--light-gray);
 }
@@ -35,6 +35,7 @@
   gap: 0.5rem;
   font-size: 0.9rem;
   font-weight: 500;
+  width: auto;
 }
 
 .primary-btn:hover {
@@ -55,6 +56,7 @@
   gap: 0.5rem;
   font-size: 0.9rem;
   font-weight: 500;
+  width: auto;
 }
 
 .secondary-btn:hover {
@@ -229,13 +231,12 @@
   opacity: 0.5;
 }
 
-/* Modal */
+/* Modales */
 .modal {
   display: none;
   position: fixed;
   z-index: 1000;
   left: 0;
-  top: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
@@ -251,7 +252,7 @@
   border-radius: var(--border-radius);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   position: relative;
-  padding: 2rem;
+  padding: 1rem;
   animation: modalFadeIn 0.3s ease-out;
 }
 
@@ -363,19 +364,21 @@
 /* Responsive */
 @media (max-width: 768px) {
   .tasks-header {
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
+    justify-content: center;
     gap: 1rem;
   }
   
   .task-btns {
-    width: 100%;
+    width: auto;
     flex-direction: column;
+    margin: 0;
   }
   
   .primary-btn, .secondary-btn {
     width: 100%;
-    justify-content: center;
+    font-size: 0.8rem;
   }
   
   .content-tabs {

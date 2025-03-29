@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
@@ -29,33 +30,28 @@
     <!-- Cabecera -->
     <header>
       <div class="header-container">
-        <div class="logo">
-          <img src="./img/libreta.png" alt="Logo Agenda">
-          <h1>Agenda Maestra</h1>
-        </div>
         <div class="weather-container">
           <div class="weather-search">
             <input type="text" id="cityInput" placeholder="Buscar ciudad..." value="Sevilla">
-            <button id="searchWeather"><i class="fas fa-search"></i></button>
+            <button id="searchWeather" aria-label="Buscar clima de la ciudad"><i class="fas fa-search"></i></button>
           </div>
           <div id="weatherInfo" class="weather-info"></div>
         </div>
+
+        <div id="currentDateTime" class="current-date-time">
+          <!-- Fecha y hora aquí -->
+        </div>
       </div>
     </header>
-    
-    <div id="currentDateTime" class="current-date-time">
-      <!-- Fecha y hora aquí -->
-    </div>
 
     <!-- Contenedor principal -->
-    <div class="main-container">
+    <main class="main-container">
       <!-- Panel central - Lista de tareas -->
-      <div class="tasks-container">
-        <div class="tasks-header">
-          <h2>Mi Agenda</h2>
+      <section class="tasks-container">
+        <article class="tasks-header">
           <div class="dropdown-container">
             <div class="dropdown-header" id="filterDropdown">
-              <span id="currentFilterText">Todas las tareas</span>
+              <span id="currentFilterText">Filtrar Tareas</span>
               <i class="fas fa-chevron-down"></i>
             </div>
             <div class="dropdown-menu" id="filterMenu">
@@ -74,37 +70,37 @@
             </div>
           </div>
           <div class="task-btns">
-            <button id="addTaskBtn" class="primary-btn">
+            <button id="addTaskBtn" class="primary-btn" aria-label="Agregar nueva tarea">
               <i class="fas fa-plus"></i> Nueva Tarea
             </button>
-            <button id="addEventBtn" class="secondary-btn">
+            <button id="addEventBtn" class="secondary-btn" aria-label="Agregar nuevo evento">
               <i class="fas fa-calendar-plus"></i> Nuevo Evento
             </button>
           </div>
-        </div>
+        </article>
 
         <div class="content-tabs">
-          <button id="showTasksTab" class="tab-btn active">Tareas</button>
-          <button id="showEventsTab" class="tab-btn">Eventos</button>
-          <button id="showCalendarTab" class="tab-btn">Calendario</button>
+          <button id="showTasksTab" class="tab-btn active" aria-label="Ver tareas">Tareas</button>
+          <button id="showEventsTab" class="tab-btn" aria-label="Ver eventos">Eventos</button>
+          <button id="showCalendarTab" class="tab-btn" aria-label="Ver calendario">Calendario</button>
         </div>
 
-        <div id="tasksList" class="tasks-list">
+        <section id="tasksList" class="tasks-list">
           <!-- Tareas se cargan aquí -->
-        </div>
+        </section>
 
-        <div id="eventsList" class="events-list hidden">
+        <section id="eventsList" class="events-list hidden">
           <!-- Eventos se cargan aquí -->
-        </div>
+        </section>
 
-        <div id="calendarView" class="calendar-view hidden">
-          <div class="calendar-header">
+        <section id="calendarView" class="calendar-view hidden">
+          <article class="calendar-header">
             <div class="calendar-nav">
-              <button id="prevMonth" class="calendar-nav-btn"><i class="fas fa-chevron-left"></i></button>
+              <button id="prevMonth" class="calendar-nav-btn" aria-label="Mes anterior"><i class="fas fa-chevron-left"></i></button>
               <h3 id="currentMonthYear">Abril 2025</h3>
-              <button id="nextMonth" class="calendar-nav-btn"><i class="fas fa-chevron-right"></i></button>
+              <button id="nextMonth" class="calendar-nav-btn" aria-label="Mes siguiente"><i class="fas fa-chevron-right"></i></button>
             </div>
-          </div>
+          </article>
           <div id="calendarMonthView" class="calendar-month-view">
             <div class="calendar-weekdays">
               <div>Lun</div>
@@ -119,40 +115,38 @@
               <!-- Días del calendario se generarán aquí -->
             </div>
           </div>
-        </div>
-      </div>
-      
+        </section>
+      </section>
+
       <!-- Sidebar -->
-      <div class="sidebar">
-        <div class="news-container">
-          <div class="news-header">
+      <aside class="sidebar">
+        <section class="news-container">
+          <article class="news-header">
             <img src="./img/noticias.png" alt="Icono noticias">
             <h2>Noticias</h2>
-          </div>
-          
-          <div id="newsList" class="news-list"></div>
-        </div>
-      </div>
-    </div>
+          </article>
+
+          <section id="newsList" class="news-list"></section>
+        </section>
+      </aside>
+    </main>
 
     <!-- Modal añadir/editar tarea -->
-    <div id="taskModal" class="modal">
+    <div id="taskModal" class="modal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
       <div class="modal-content">
-        <span class="close-modal">&times;</span>
+        <span class="close-modal" aria-label="Cerrar modal">&times;</span>
         <h2 id="modalTitle">Nueva Tarea</h2>
-        <form id="taskForm">
+        <form id="taskForm" aria-labelledby="modalTitle">
           <input type="hidden" id="taskId">
           <div class="form-group">
-            <label for="title">Título:</label>
-            <input type="text" id="title" required>
+            <input type="text" id="title" required aria-required="true" value="Título:">
           </div>
           <div class="form-group">
-            <label for="description">Descripción:</label>
-            <textarea id="description" rows="3"></textarea>
+            <textarea id="description" rows="3" aria-describedby="descriptionHelp" def>Descripción:</textarea>
           </div>
           <div class="form-group">
             <label for="dueDate">Fecha de vencimiento:</label>
-            <input type="datetime-local" id="dueDate" required>
+            <input type="datetime-local" id="dueDate" required aria-required="true">
           </div>
           <div class="form-group">
             <label for="status">Estado:</label>
@@ -168,27 +162,24 @@
     </div>
 
     <!-- Modal añadir/editar evento -->
-    <div id="eventModal" class="modal">
+    <div id="eventModal" class="modal" role="dialog" aria-labelledby="eventModalTitle" aria-hidden="true">
       <div class="modal-content">
-        <span class="close-modal">&times;</span>
+        <span class="close-modal" aria-label="Cerrar modal">&times;</span>
         <h2 id="eventModalTitle">Nuevo Evento</h2>
-        <form id="eventForm">
+        <form id="eventForm" aria-labelledby="eventModalTitle">
           <input type="hidden" id="eventId">
           <div class="form-group">
-            <label for="eventTitle">Título:</label>
-            <input type="text" id="eventTitle" required>
+            <input type="text" id="eventTitle" required aria-required="true" value="Título:">
           </div>
           <div class="form-group">
-            <label for="eventDetails">Detalles:</label>
-            <textarea id="eventDetails" rows="3"></textarea>
+            <textarea id="eventDetails" rows="3">Detalles:</textarea>
           </div>
           <div class="form-group">
             <label for="eventDate">Fecha y hora:</label>
-            <input type="datetime-local" id="eventDate" required>
+            <input type="datetime-local" id="eventDate" required aria-required="true">
           </div>
           <div class="form-group">
-            <label for="eventLocation">Ubicación:</label>
-            <input type="text" id="eventLocation">
+            <input type="text" id="eventLocation" value="Ubicación:">
           </div>
           <button type="submit" class="primary-btn" id="saveEventBtn">Guardar</button>
         </form>
@@ -196,32 +187,35 @@
     </div>
 
     <!-- Modal para ver detalles de día -->
-    <div id="dayDetailsModal" class="modal">
+    <div id="dayDetailsModal" class="modal" role="dialog" aria-labelledby="dayDetailsTitle" aria-hidden="true">
       <div class="modal-content">
-        <span class="close-modal">&times;</span>
+        <span class="close-modal" aria-label="Cerrar modal">&times;</span>
         <h2 id="dayDetailsTitle">Actividades para el 15 de Abril</h2>
         <div id="dayDetailsTasks" class="day-details-section">
           <h3>Tareas</h3>
-          <div id="dayTasksList" class="day-items-list">
-            <!-- Las tareas del día se mostrarán aquí -->
-          </div>
+          <div id="dayTasksList" class="day-items-list"></div>
         </div>
         <div id="dayDetailsEvents" class="day-details-section">
           <h3>Eventos</h3>
-          <div id="dayEventsList" class="day-items-list">
-            <!-- Los eventos del día se mostrarán aquí -->
-          </div>
+          <div id="dayEventsList" class="day-items-list"></div>
         </div>
         <div class="day-actions">
-          <button id="addTaskFromDay" class="primary-btn">
+          <button id="addTaskFromDay" class="primary-btn" aria-label="Agregar tarea para este día">
             <i class="fas fa-plus"></i> Nueva Tarea
           </button>
-          <button id="addEventFromDay" class="secondary-btn">
+          <button id="addEventFromDay" class="secondary-btn" aria-label="Agregar evento para este día">
             <i class="fas fa-calendar-plus"></i> Nuevo Evento
           </button>
         </div>
       </div>
     </div>
   </div>
+
+  <footer>
+    <div class="footer">
+      <p>&copy; 2025 Antonio Gómez. Desde Andalucía, con ❤.</p>
+    </div>  
+  </footer>
 </body>
+
 </html>
