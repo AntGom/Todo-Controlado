@@ -270,10 +270,10 @@
 .close-modal {
   position: absolute;
   right: 1.5rem;
-  top: 1.5rem;
+  top: 1rem;
   font-size: 1.5rem;
   cursor: pointer;
-  color: var(--dark-gray);
+  color: var(--danger-color);
   transition: var(--transition);
 }
 

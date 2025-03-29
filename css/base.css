@@ -1,16 +1,16 @@
 :root {
-  --primary-color: #2f855a;
-  --primary-dark: #276749;
-  --secondary-color:  #d69e2e;
-  --secondary-dark: #b7791f;
-  --text-color: #2d3748;
-  --bg-color: #f7fafc;
-  --light-gray: #e2e8f0;  
-  --medium-gray: #a0aec0;
-  --dark-gray: #4a5568;
-  --success-color: #38a169;
-  --warning-color: #dd6b20;
-  --danger-color: #c53030;
+  --primary-color: #2c5282;
+  --primary-dark: #243d66;
+  --secondary-color: #b89f5d;
+  --secondary-dark: #8d7d44;
+  --text-color: #1a202c;
+  --bg-color: #f3f4f6;
+  --light-gray: #d1d5db;
+  --medium-gray: #9fa6b2;
+  --dark-gray: #4b5563;
+  --success-color: #25855a;
+  --warning-color: #d97706;
+  --danger-color: #b91c1c;
   --border-radius: 6px;
   --shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   --transition: all 0.2s ease;
@@ -296,7 +296,7 @@ header {
   display: flex;
   justify-content: center;
   text-align: center;
-  background: var(--primary-color);
+  background-color: var(--primary-color);
   color: white;
   padding: 1rem;
   align-self: center;
