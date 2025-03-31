@@ -2,7 +2,6 @@
 let tasks = [];
 let events = [];
 
-// Estado actual del filtro
 let currentFilter = "all";
 
 // Fuente de noticias actual y disponibles
@@ -12,9 +11,9 @@ const newsSources = {
     "https://api.rss2json.com/v1/api.json?rss_url=https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/portada",
   elMundo:
     "https://api.rss2json.com/v1/api.json?rss_url=https://e00-elmundo.uecdn.es/elmundo/rss/portada.xml",
-  marcaMotor: 
+  marcaMotor:
     "https://api.rss2json.com/v1/api.json?rss_url=https://e00-marca.uecdn.es/rss/motor/formula1.xml",
-  motoGP: 
+  motoGP:
     "https://api.rss2json.com/v1/api.json?rss_url=https://e00-marca.uecdn.es/rss/motor/motogp.xml",
 };
 
@@ -27,47 +26,47 @@ const filterNames = {
 };
 
 // Guardar tareas en localStorage
-function saveTasks() {
+const saveTasks = () => {
   try {
-    localStorage.setItem("taskPlanner_tasks", JSON.stringify(tasks));
+    localStorage.setItem("todoControlado_tasks", JSON.stringify(tasks));
   } catch (error) {
     console.error("Error al guardar tareas en localStorage:", error);
   }
-}
+};
 
 // Recuperar tareas desde localStorage
-function loadTasks() {
+const loadTasks = () => {
   try {
-    const tasksData = localStorage.getItem("taskPlanner_tasks");
+    const tasksData = localStorage.getItem("todoControlado_tasks");
     tasks = tasksData ? JSON.parse(tasksData) : [];
   } catch (error) {
     console.error("Error al recuperar tareas de localStorage:", error);
     tasks = [];
   }
-}
+};
 
 // Guardar eventos en localStorage
-function saveEvents() {
+const saveEvents = () => {
   try {
-    localStorage.setItem("taskPlanner_events", JSON.stringify(events));
+    localStorage.setItem("todoControlado_events", JSON.stringify(events));
   } catch (error) {
     console.error("Error al guardar eventos en localStorage:", error);
   }
-}
+};
 
 // Recuperar eventos desde localStorage
-function loadEvents() {
+const loadEvents = () => {
   try {
-    const eventsData = localStorage.getItem("taskPlanner_events");
+    const eventsData = localStorage.getItem("todoControlado_events");
     events = eventsData ? JSON.parse(eventsData) : [];
   } catch (error) {
     console.error("Error al recuperar eventos de localStorage:", error);
     events = [];
   }
-}
+};
 
 // Actualiza la fecha y hora en el header
-function updateDateTime() {
+const updateDateTime = () => {
   const now = new Date();
   const options = {
     weekday: "long",
@@ -83,4 +82,4 @@ function updateDateTime() {
     currentDateTime.textContent = now.toLocaleDateString("es-ES", options);
     setTimeout(updateDateTime, 1000);
   }
-}
+};

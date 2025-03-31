@@ -76,14 +76,37 @@ function createEventElement(event) {
 function openEventModal(eventId = null) {
   eventForm.reset();
 
+  const titleInput = document.getElementById("eventTitle");
+  const detailsInput = document.getElementById("eventDetails");
+  const ubicationInput = document.getElementById("eventLocation");
+
+  // Evento para borrar el contenido al hacer clic en el campo
+  titleInput.addEventListener("focus", function () {
+    if (this.value === "Título del evento") {
+      this.value = "";
+    }
+  });
+
+  detailsInput.addEventListener("focus", function () {
+    if (this.value === "Detalles del evento") {
+      this.value = "";
+    }
+  });
+
+  ubicationInput.addEventListener("focus", function () {
+    if (this.value === "Ubicación:") {
+      this.value = "";
+    }
+  });
+
   if (eventId) {
     const event = getEventById(eventId);
     if (!event) return;
 
     eventModalTitle.textContent = "Editar Evento";
     document.getElementById("eventId").value = event.id;
-    document.getElementById("eventTitle").value = event.title;
-    document.getElementById("eventDetails").value = event.details || "";
+    titleInput.value = event.title;
+    detailsInput.value = event.details || "";
     document.getElementById("eventLocation").value = event.location || "";
 
     const eventDate = new Date(event.date);
@@ -99,6 +122,8 @@ function openEventModal(eventId = null) {
   } else {
     eventModalTitle.textContent = "Nuevo Evento";
     document.getElementById("eventId").value = "";
+    titleInput.value = "Título del evento";
+    detailsInput.value = "Detalles del evento";
 
     const now = new Date();
     const year = now.getFullYear();

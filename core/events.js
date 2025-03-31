@@ -1,10 +1,10 @@
-// Obtiene todos los eventos
-function getAllEvents() {
+// Obtener todos los eventos
+const getAllEvents = () => {
   return events;
-}
+};
 
-// Añade un nuevo evento
-function addEvent(eventData) {
+// Añadir nuevo evento
+const addEvent = (eventData) => {
   const newEvent = {
     id: Date.now().toString(),
     title: eventData.title,
@@ -17,10 +17,10 @@ function addEvent(eventData) {
   events.push(newEvent);
   saveEvents();
   return newEvent;
-}
+};
 
-// Actualiza un evento existente
-function updateEvent(eventId, updatedData) {
+// Actualizar evento existente
+const updateEvent = (eventId, updatedData) => {
   const eventIndex = events.findIndex((event) => event.id === eventId);
 
   if (eventIndex === -1) {
@@ -35,10 +35,10 @@ function updateEvent(eventId, updatedData) {
 
   saveEvents();
   return events[eventIndex];
-}
+};
 
-// Elimina un evento
-function deleteEvent(eventId) {
+// Eliminar evento
+const deleteEvent = (eventId) => {
   const initialLength = events.length;
   events = events.filter((event) => event.id !== eventId);
 
@@ -48,9 +48,9 @@ function deleteEvent(eventId) {
 
   saveEvents();
   return true;
-}
+};
 
-// Obtiene un evento por su ID
-function getEventById(eventId) {
+// Obtener evento por ID
+const getEventById = (eventId) => {
   return events.find((event) => event.id === eventId) || null;
-}
+};

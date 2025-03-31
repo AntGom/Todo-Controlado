@@ -80,14 +80,30 @@ function createTaskElement(task) {
 function openTaskModal(taskId = null) {
   taskForm.reset();
 
+  const titleInput = document.getElementById("title");
+  const descriptionInput = document.getElementById("description");
+
+  // Evento para borrar el contenido al hacer clic en el campo
+  titleInput.addEventListener("focus", function () {
+    if (this.value === "Título:") {
+      this.value = "";
+    }
+  });
+
+  descriptionInput.addEventListener("focus", function () {
+    if (this.value === "Descripción:") {
+      this.value = "";
+    }
+  });
+
   if (taskId) {
     const task = getTaskById(taskId);
     if (!task) return;
 
     modalTitle.textContent = "Editar Tarea";
     document.getElementById("taskId").value = task.id;
-    document.getElementById("title").value = task.title;
-    document.getElementById("description").value = task.description || "";
+    titleInput.value = task.title;
+    descriptionInput.value = task.description || "";
 
     const dueDate = new Date(task.dueDate);
     const year = dueDate.getFullYear();
@@ -103,6 +119,8 @@ function openTaskModal(taskId = null) {
   } else {
     modalTitle.textContent = "Nueva Tarea";
     document.getElementById("taskId").value = "";
+    titleInput.value = "Título:";
+    descriptionInput.value = "Descripción:";
 
     const now = new Date();
     const year = now.getFullYear();

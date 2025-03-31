@@ -274,15 +274,15 @@
 .close-modal {
   position: absolute;
   right: 1.5rem;
-  top: 1rem;
-  font-size: 1.5rem;
+  bottom: 0.75rem;
+  font-size: 2rem;
+  font-weight: 700;
   cursor: pointer;
   color: var(--danger-color);
   transition: var(--transition);
 }
 
 .close-modal:hover {
-  color: var(--danger-color);
   transform: rotate(90deg);
 }
 
@@ -361,8 +361,9 @@
 .day-actions {
   display: flex;
   gap: 1rem;
-  margin-top: 2rem;
-  justify-content: flex-end;
+  margin-top: 1.5rem;
+  justify-content: start;
+  align-items: center;
 }
 
 /* Responsive */
@@ -374,9 +375,6 @@
     gap: 1rem;
   }
   
-  /* Ya no esta task-btns en columna por defecto.
-     Ahora se controla desde JS 
-     basado en la pestaña activa */
   .tasks-header:has(.dropdown-container[style*="display: block"]) .task-btns {
     flex-direction: column;
     width: auto;
@@ -384,7 +382,7 @@
   
   .primary-btn, .secondary-btn {
     white-space: nowrap;
-    font-size: 0.85rem;
+    font-size: 0.7rem;
     padding: 0.5rem 0.75rem;
   }
   
@@ -403,6 +401,6 @@
   }
   
   .day-actions {
-    flex-direction: column;
+    gap: 0.5rem;
   }
 }
