@@ -1,4 +1,4 @@
-// Referencias a elementos del DOM comunes
+// Referencias elementos del DOM
 const tasksList = document.getElementById("tasksList");
 const eventsList = document.getElementById("eventsList");
 const calendarViewElement = document.getElementById("calendarView");
@@ -30,7 +30,7 @@ const taskBtns = document.querySelector(".task-btns");
 const defaultCity = "Sevilla";
 
 // Marca un filtro como activo y desactiva los demás
-function setActiveFilter(filter) {
+const setActiveFilter = (filter) => {
   currentFilter = filter;
   currentFilterText.textContent = filterNames[filter];
 
@@ -41,10 +41,10 @@ function setActiveFilter(filter) {
       item.classList.remove("active");
     }
   });
-}
+};
 
-// Establece las pestañas activas
-function setupTabs() {
+// Establece pestañas activas
+const setupTabs = () => {
   showTasksTab.addEventListener("click", () => {
     tasksList.classList.remove("hidden");
     eventsList.classList.add("hidden");
@@ -52,16 +52,16 @@ function setupTabs() {
     showTasksTab.classList.add("active");
     showEventsTab.classList.remove("active");
     showCalendarTab.classList.remove("active");
-    
-    // Mostrar el dropdown de filtro cuando estamos en la pestaña de tareas
+
+    // Mostrar filtro desplegable en pestaña tareas
     if (dropdownContainer) {
-      dropdownContainer.style.display = 'block';
+      dropdownContainer.style.display = "block";
     }
-    
-    // Restaurar dirección de los botones (puede ser en columna en móvil)
+
+    // Restaurar dirección de los botones (columna en tlf)
     if (taskBtns) {
-      taskBtns.style.flexDirection = '';
-      taskBtns.style.width = '';
+      taskBtns.style.flexDirection = "";
+      taskBtns.style.width = "";
     }
   });
 
@@ -72,16 +72,16 @@ function setupTabs() {
     showTasksTab.classList.remove("active");
     showEventsTab.classList.add("active");
     showCalendarTab.classList.remove("active");
-    
-    // Ocultar el dropdown de filtro cuando no estamos en la pestaña de tareas
+
+    // Ocultar filtro desplegable si no estamos en pestaña de tareas
     if (dropdownContainer) {
-      dropdownContainer.style.display = 'none';
+      dropdownContainer.style.display = "none";
     }
-    
-    // Poner botones en fila cuando el filtro está oculto
+
+    // Poner botones row cuando filtro es oculto
     if (taskBtns) {
-      taskBtns.style.flexDirection = 'row';
-      taskBtns.style.width = '100%';
+      taskBtns.style.flexDirection = "row";
+      taskBtns.style.width = "100%";
     }
   });
 
@@ -93,40 +93,40 @@ function setupTabs() {
     showEventsTab.classList.remove("active");
     showCalendarTab.classList.add("active");
     renderCalendar();
-    
-    // Ocultar filtro cuando no estamos en pestaña de tareas
+
+    // Ocultar filtro cuando no estamos en pestaña tareas
     if (dropdownContainer) {
-      dropdownContainer.style.display = 'none';
+      dropdownContainer.style.display = "none";
     }
-    
-    // Poner botones en fila cuando el filtro está oculto
+
+    // Poner botones en fila si filtro está oculto
     if (taskBtns) {
-      taskBtns.style.flexDirection = 'row';
-      taskBtns.style.width = '100%';
+      taskBtns.style.flexDirection = "row";
+      taskBtns.style.width = "100%";
     }
   });
-  
+
   // Filtro se muestre ok al cargar la página según pestaña activa
   setTimeout(() => {
-    if (!showTasksTab.classList.contains('active')) {
+    if (!showTasksTab.classList.contains("active")) {
       if (dropdownContainer) {
-        dropdownContainer.style.display = 'none';
+        dropdownContainer.style.display = "none";
       }
-      
+
       // Poner botones en fila si no estamos en la pestaña de tareas al inicio
       if (taskBtns) {
-        taskBtns.style.flexDirection = 'row';
-        taskBtns.style.width = '100%';
+        taskBtns.style.flexDirection = "row";
+        taskBtns.style.width = "100%";
       }
     }
   }, 0);
-}
+};
 
-// Variable para guardar el valor original de la ciudad
+// Variable para valor original de la ciudad
 let lastSearchedCity = defaultCity;
 
 // Busca info del clima para una ciudad
-async function searchWeather(city) {
+const searchWeather = async (city) => {
   try {
     weatherInfo.innerHTML = "<p>Cargando información del clima...</p>";
     lastSearchedCity = city;
@@ -142,17 +142,16 @@ async function searchWeather(city) {
     weatherInfo.innerHTML = "<p>Error al obtener el clima.</p>";
     console.error("Error al buscar el clima:", error);
   }
-}
+};
 
 // Restaurar el input a su estado de búsqueda
-function resetWeatherInput() {
+const resetWeatherInput = () => {
   cityInput.value = lastSearchedCity;
   cityInput.classList.remove("weather-result");
-}
-
+};
 
 // Carga y muestra noticias
-async function loadNews(source = null) {
+const loadNews = async (source = null) => {
   try {
     newsList.innerHTML = "<p>Cargando noticias...</p>";
 
@@ -210,18 +209,18 @@ async function loadNews(source = null) {
     newsList.innerHTML = "<p>Error al cargar las noticias.</p>";
     console.error("Error al cargar noticias:", error);
   }
-}
+};
 
-// Crea las opciones para el selector de fuentes de noticias
-function createNewsSourceOptions() {
+// Crea opciones para noticias
+const createNewsSourceOptions = () => {
   const sources = getAvailableNewsSources();
   return Object.values(sources)
     .map((source) => `<option value="${source.id}">${source.name}</option>`)
     .join("");
-}
+};
 
-// Obtiene la lista de fuentes de noticias disponibles
-function getAvailableNewsSources() {
+// Lista de fuentes de noticias disponibles
+const getAvailableNewsSources = () => {
   return Object.keys(newsSources).reduce((acc, key) => {
     acc[key] = {
       id: key,
@@ -229,4 +228,4 @@ function getAvailableNewsSources() {
     };
     return acc;
   }, {});
-}
+};

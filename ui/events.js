@@ -1,5 +1,4 @@
-// Renderiza los eventos en la interfaz
-function renderEvents() {
+const renderEvents = () => {
   const allEvents = getAllEvents();
   eventsList.innerHTML = "";
 
@@ -19,10 +18,10 @@ function renderEvents() {
   sortedEvents.forEach((event) => {
     eventsList.appendChild(createEventElement(event));
   });
-}
+};
 
-// Crea un elemento DOM para un evento
-function createEventElement(event) {
+// Crea elemento DOM para un evento
+const createEventElement = (event) => {
   const eventEl = document.createElement("div");
   eventEl.className = "event-item";
   eventEl.dataset.id = event.id;
@@ -70,17 +69,17 @@ function createEventElement(event) {
   });
 
   return eventEl;
-}
+};
 
-// Abre el modal para crear o editar un evento
-function openEventModal(eventId = null) {
+// Abre modal crear/editar un evento
+const openEventModal = (eventId = null) => {
   eventForm.reset();
 
   const titleInput = document.getElementById("eventTitle");
   const detailsInput = document.getElementById("eventDetails");
   const ubicationInput = document.getElementById("eventLocation");
 
-  // Evento para borrar el contenido al hacer clic en el campo
+  // Evento para borrar input al hacer clic
   titleInput.addEventListener("focus", function () {
     if (this.value === "Título del evento") {
       this.value = "";
@@ -138,15 +137,15 @@ function openEventModal(eventId = null) {
   }
 
   eventModal.style.display = "block";
-}
+};
 
-// Cierra el modal de eventos
-function closeEventModal() {
+// Cierra  modal
+const closeEventModal = () => {
   eventModal.style.display = "none";
-}
+};
 
-// Maneja el envío del formulario de evento
-function handleEventFormSubmit(e) {
+// Eenvío del formulario de evento
+const handleEventFormSubmit = (e) => {
   e.preventDefault();
 
   const eventId = document.getElementById("eventId").value;
@@ -174,18 +173,18 @@ function handleEventFormSubmit(e) {
   }
 
   renderEvents();
-  renderCalendar(); // Actualizar el calendario con los nuevos eventos
+  renderCalendar(); // Actualizar el calendario!!
   closeEventModal();
-}
+};
 
 // Confirma y elimina un evento
-function confirmDeleteEvent(eventId) {
+const confirmDeleteEvent = (eventId) => {
   const event = getEventById(eventId);
   if (
     confirm(`¿Estás seguro de que deseas eliminar el evento "${event.title}"?`)
   ) {
     deleteEvent(eventId);
     renderEvents();
-    renderCalendar(); // Actualizar el calendario
+    renderCalendar(); // Actualizar el calendario!!
   }
-}
+};

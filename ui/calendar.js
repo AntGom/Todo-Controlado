@@ -1,4 +1,3 @@
-// Variables para el calendario
 let currentCalendarDate = new Date();
 let selectedDate = null;
 
@@ -31,7 +30,7 @@ const monthNames = [
   "Diciembre",
 ];
 
-// Nombres de los días en español
+// Nombres de los días
 const dayNames = [
   "Lunes",
   "Martes",
@@ -127,7 +126,7 @@ const renderMonthView = () => {
   const firstDay = new Date(year, month, 1);
   // Ajustar (0 = lunes, 6 = domingo)
   let dayOfWeek = firstDay.getDay() - 1;
-  if (dayOfWeek < 0) dayOfWeek = 6; // E domingo (0), ajustar a 6
+  if (dayOfWeek < 0) dayOfWeek = 6;
 
   // Sacar el último día del mes
   const lastDay = new Date(year, month + 1, 0);
@@ -170,7 +169,7 @@ const renderMonthView = () => {
   }
 };
 
-// Crea un elemento para un día en la vista de mes
+// Crea un elemento para un día en vista de mes
 const createDayElement = (date, isOtherMonth = false, isToday = false) => {
   const dayElement = document.createElement("div");
   dayElement.className = "calendar-day";
@@ -180,7 +179,7 @@ const createDayElement = (date, isOtherMonth = false, isToday = false) => {
 
   const day = date.getDate();
 
-  // Sacar tareas y eventos para este día
+  // Tareas y eventos para este día
   const dayTasks = getTasksForDate(date);
   const dayEvents = getEventsForDate(date);
 
@@ -199,7 +198,7 @@ const createDayElement = (date, isOtherMonth = false, isToday = false) => {
     const itemsContainer = document.createElement("div");
     itemsContainer.className = "calendar-day-items";
 
-    // Mostrar hasta 2 elementos (combinando tareas y eventos)
+    // Mostrar hasta 2 elementos (tareas + eventos)
     const allItems = [...dayTasks, ...dayEvents];
     const visibleItems = allItems.slice(0, 2);
     const remainingItems = allItems.length - 2;

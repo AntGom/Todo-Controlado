@@ -1,5 +1,5 @@
 // Obtiene datos del clima para una ciudad específica
-async function getWeather(city = "Sevilla") {
+const getWeather = async (city = "Sevilla") => {
   try {
     const apiUrl = "https://wttr.in/";
     const format = "?format= %c %t"; // %C para condición, %t para temperatura
@@ -24,11 +24,10 @@ async function getWeather(city = "Sevilla") {
     console.error("Error al obtener el clima:", error);
     return `⚠️ No se pudo obtener el clima para "${city}"`;
   }
-}
-
+};
 
 // Obtiene noticias desde la API
-async function getNews(source = null) {
+const getNews = async (source = null) => {
   try {
     const newsApiUrl = source
       ? newsSources[source]
@@ -48,10 +47,10 @@ async function getNews(source = null) {
     console.error("Error en la API de noticias:", error);
     return { items: [] };
   }
-}
+};
 
 // Formatea el nombre de la fuente para mostrar
-function formatSourceName(sourceId) {
+const formatSourceName = (sourceId) => {
   switch (sourceId) {
     case "elPais":
       return "El País";
@@ -59,9 +58,9 @@ function formatSourceName(sourceId) {
       return "El Mundo";
     case "marcaMotor":
       return "Fórmula-1";
-      case "motoGP":
+    case "motoGP":
       return "Moto GP";
     default:
       return sourceId;
   }
-}
+};

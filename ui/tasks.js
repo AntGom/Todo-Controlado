@@ -1,5 +1,4 @@
-// Renderiza las tareas en la interfaz
-function renderTasks(filter = currentFilter) {
+const renderTasks = (filter = currentFilter) => {
   const filteredTasks = getFilteredTasks(filter);
   tasksList.innerHTML = "";
 
@@ -19,10 +18,10 @@ function renderTasks(filter = currentFilter) {
   sortedTasks.forEach((task) => {
     tasksList.appendChild(createTaskElement(task));
   });
-}
+};
 
-// Crea un elemento DOM para una tarea
-function createTaskElement(task) {
+// Elemento DOM para tarea
+const createTaskElement = (task) => {
   const taskEl = document.createElement("div");
   taskEl.className = "task-item";
   taskEl.dataset.id = task.id;
@@ -74,16 +73,16 @@ function createTaskElement(task) {
   });
 
   return taskEl;
-}
+};
 
-// Abre el modal para crear o editar una tarea
-function openTaskModal(taskId = null) {
+// Abrir modal para crear/editar tarea
+const openTaskModal = (taskId = null) => {
   taskForm.reset();
 
   const titleInput = document.getElementById("title");
   const descriptionInput = document.getElementById("description");
 
-  // Evento para borrar el contenido al hacer clic en el campo
+  // Borrar contenido hacer clic en input
   titleInput.addEventListener("focus", function () {
     if (this.value === "Título:") {
       this.value = "";
@@ -136,15 +135,15 @@ function openTaskModal(taskId = null) {
   }
 
   taskModal.style.display = "block";
-}
+};
 
-// Cierra el modal de tareas
-function closeTaskModal() {
+// Cierra el modal
+const closeTaskModal = () => {
   taskModal.style.display = "none";
-}
+};
 
-// Maneja el envío del formulario de tarea
-function handleTaskFormSubmit(event) {
+// Envío del formulario de tarea
+const handleTaskFormSubmit = (event) => {
   event.preventDefault();
 
   const taskId = document.getElementById("taskId").value;
@@ -172,18 +171,18 @@ function handleTaskFormSubmit(event) {
   }
 
   renderTasks();
-  renderCalendar(); // Actualizar el calendario con las nuevas tareas
+  renderCalendar(); // Actualizar el calendario!!
   closeTaskModal();
-}
+};
 
 // Confirma y elimina una tarea
-function confirmDeleteTask(taskId) {
+const confirmDeleteTask = (taskId) => {
   const task = getTaskById(taskId);
   if (
     confirm(`¿Estás seguro de que deseas eliminar la tarea "${task.title}"?`)
   ) {
     deleteTask(taskId);
     renderTasks();
-    renderCalendar(); // Actualizar el calendario
+    renderCalendar(); // Actualizar el calendario!!
   }
-}
+};
